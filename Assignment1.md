@@ -6,9 +6,7 @@
 
 ## **Math Equations**
 
-```markdown
-x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
-```
+![Math](https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1)
 
 ## Python Code
 
