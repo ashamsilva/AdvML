@@ -2,7 +2,9 @@
 
 ## A picture 
 
-<img src="AML.jpeg" width="400" height="600" alt="hi" class="inline"/>
+<img src="images/AML.jpeg" width="400" height="600" alt="hi" class="inline"/>
+
+
 
 ## **Math Equations**
 
