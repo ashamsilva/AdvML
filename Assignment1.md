@@ -5,7 +5,8 @@
 <img src="AML.jpeg" width="400" height="600" alt="hi" class="inline"/>
 
 ## **Math Equations**
-![Math]("https://latex.codecogs.com/svg.latex?\Large&space;x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}")
+
+x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
 
 
 ## Python Code
