@@ -8,8 +8,7 @@
 
 ## **Math Equations**
 
-![Math](https://render.githubusercontent.com/render/math?math=%5Csqrt%7B%5Csin(x%2B1)%2B3%7D)
-<img src="https://render.githubusercontent.com/render/math?math=e^{i \pi} = -1">
+<img src="https://render.githubusercontent.com/render/math?math=e^{x \pi} = -1">
 
 
 ## Python Code
