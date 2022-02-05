@@ -6,8 +6,9 @@
 
 ## **Math Equations**
 
+```markdown
 x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}" title="\Large x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}
-
+```
 
 ## Python Code
 
