@@ -16,9 +16,8 @@ In order to find the k nearest neighbors from x, Euclidean distance is used. The
 
 The equation for the redictions we make is:
 
-```Markdown
-$$\large \hat{y} = X(X^TX)^{-1}(X^Ty)$$
-```
+<img src="images/Assignment2.jpeg" width="400" height="600" alt="hi" class="inline"/>
+
 
 In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by usinglocally weighted regression we obtained the predicted y as a different linear combination of the values of y.
 
