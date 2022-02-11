@@ -8,15 +8,15 @@ In this paper you should also include theoretical considerations, examples of Py
 The final results should be clearly stated.
 
 
-## Locally Weighted Regression 
+### Locally Weighted Regression 
 
-## Random Forest 
+### Random Forest 
 
 
 
-# Application of Locally Weighted Regression and Random Forest on Datasets
+## Application of Locally Weighted Regression and Random Forest on Datasets
 
-## Funtions and Code used for Both Datasets 
+### Funtions and Code used for Both Datasets 
 
 Import the necessary libraries and assign StandardScaler() as scale.
 ```Python
@@ -87,7 +87,7 @@ print('The MSE for Random Forest is :' + str(np.mean(mse_rf)))
 print('The MSE for Locally Weighted Regression is :' + str(np.mean(mse_lwr)))
 ```
 
-## Dataset 1: 
+### Dataset 1: Diabetes
 
 MSE for each method and which has better results 
 final results 
@@ -105,7 +105,7 @@ x = df['bmi'].values
 y = df['output'].values
 ```
 
-## Dataset 2:
+### Dataset 2: Breast Cancer
 
 MSE for each method and which has better results 
 final results 
