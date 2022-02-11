@@ -20,7 +20,6 @@ The equation for the redictions we make is:
 
 <img src="images/Assignment2.jpeg" width="400" height="60" alt="hi" class="inline"/>
 
-
 In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by usinglocally weighted regression we obtained the predicted y as a different linear combination of the values of y.
 
 
@@ -29,6 +28,7 @@ In conclusion, the predictions we make are a linear combination of the actual ob
 Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works fitting random subsets of the data onto decision tree. The average of their predictions are then computed.isions 
 
 The importance of each node on each decision tree is caluclated. This done by Gini Importance. The following equation assumes that we are using a binary tree with only two child nodes.
+
 <img src="images/Assignment2-2.jpeg" width="600" height="60" alt="hi" class="inline"/>
 
   
@@ -134,9 +134,11 @@ final results
 
 Assign the data to a variable and make it into a Pandas dataframe.
 ```Python
+from sklearn.datasets import load_breast_cancer
 data = load_breast_cancer()
+
 df = pd.DataFrame(data= np.c_[data['data'], data['target']],
-                     columns= data['feature_names'] + ['output'])
+                     columns= list(data.feature_names) + ['output'])
 ```
 
 Assign the input and output variables to x and y.
