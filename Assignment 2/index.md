@@ -90,26 +90,28 @@ def lowess_reg(x, y, xnew, kern, tau):
     return f(xnew)
 ```
 
-Calculate MSE for both Random Forest and Locally Weighted Regression.
+Calculate MSE for both Random Forest and Locally Weighted Regression. A four loop was created to determine the optimal tau value. 
 ```Python
 mse_lwr = []
 mse_rf = []
 rf = RandomForestRegressor(n_estimators=150,max_depth=3)
 kf = KFold(n_splits=10,shuffle=True,random_state=1234)
-for idxtrain,idxtest in kf.split(x):
-  ytrain = y[idxtrain]
-  xtrain = x[idxtrain]
-  xtrain = scale.fit_transform(xtrain.reshape(-1,1))
-  ytest = y[idxtest]
-  xtest = x[idxtest]
-  xtest = scale.transform(xtest.reshape(-1,1))
-  yhat_lwr = lowess_reg(xtrain.ravel(),ytrain,xtest.ravel(),tricubic,0.4)
-  rf.fit(xtrain,ytrain)
-  yhat_rf = rf.predict(xtest)
-  mse_lwr.append(mse(ytest,yhat_lwr))
-  mse_rf.append(mse(ytest,yhat_rf))
-print('The MSE for Locally Weighted Regression is :' + str(np.mean(mse_lwr)))
-print('The MSE for Random Forest is :' + str(np.mean(mse_rf)))
+for i in [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]:
+  for idxtrain,idxtest in kf.split(x):
+    ytrain = y[idxtrain]
+    xtrain = x[idxtrain]
+    xtrain = scale.fit_transform(xtrain.reshape(-1,1))
+    ytest = y[idxtest]
+    xtest = x[idxtest]
+    xtest = scale.transform(xtest.reshape(-1,1))
+    yhat_lwr = lowess_reg(xtrain.ravel(),ytrain,xtest.ravel(),tricubic,i)
+    rf.fit(xtrain,ytrain)
+    yhat_rf = rf.predict(xtest)
+    mse_lwr.append(mse(ytest,yhat_lwr))
+    mse_rf.append(mse(ytest,yhat_rf))
+  print(i)
+  print('The MSE for Random Forest is :' + str(np.mean(mse_rf)))
+  print('The MSE for Locally Weighted Regression is :' + str(np.mean(mse_lwr)))
 ```
 
 ### Dataset 1: Diabetes
@@ -130,6 +132,15 @@ x = df['bmi'].values
 y = df['output'].values
 ```
 
+The minimum mean squared error for Random Forest was found with a tau value of 0.5. 
+The MSE for Random Forest is :4118.411965779483
+The MSE for Locally Weighted Regression is :4031.8434939716976
+
+The minimum mean squared error for Locally Weighted Regression was found with a tau value of 0.9.
+The MSE for Random Forest is :4121.596803399811
+The MSE for Locally Weighted Regression is :3991.3441318147006
+
+
 ### Dataset 2: Breast Cancer
 
 MSE for each method and which has better results 
@@ -149,3 +160,7 @@ Assign the input and output variables to x and y.
 x = df['mean radius'].values
 y = df['output'].values
 ```
+
+The minimum mean squared error for both Locally Weighted Regression and Random Forest were found with a tau value of 0.1. 
+The MSE for Random Forest is :0.09312817955310984
+The MSE for Locally Weighted Regression is :0.09020271929160795
