@@ -18,7 +18,7 @@ The final results should be clearly stated.
 
 ## Funtions and Code used for Both Datasets 
 
-Import the necessary libraries and assign StandardScaler() as scale 
+Import the necessary libraries and assign StandardScaler() as scale.
 ```Python
 import numpy as np
 import pandas as pd
@@ -30,6 +30,12 @@ from sklearn.model_selection import KFold, train_test_split as tts
 from sklearn.metrics import mean_squared_error as mse
 from sklearn.preprocessing import StandardScaler
 scale = StandardScaler()
+```
+
+Import datasets that will be used in this analysis.
+```Python
+from sklearn.datasets import load_diabetes
+from sklearn.datasets import load_breast_cancer
 ```
 
 
@@ -86,11 +92,15 @@ print('The MSE for Locally Weighted Regression is :' + str(np.mean(mse_lwr)))
 MSE for each method and which has better results 
 final results 
 
+Assign the data to a variable and make it into a Pandas dataframe.
 ```Python
-from sklearn.datasets import load_diabetes
 data = load_diabetes()
 df = pd.DataFrame(data= np.c_[data['data'], data['target']],
-                     columns= data['feature_names'] + ['output'])
+                     columns= data['feature_names'] + ['output'])       
+```
+
+Assign the input and output variables to x and y.
+```Python
 x = df['bmi'].values
 y = df['output'].values
 ```
@@ -100,14 +110,15 @@ y = df['output'].values
 MSE for each method and which has better results 
 final results 
 
+Assign the data to a variable and make it into a Pandas dataframe.
 ```Python
-from sklearn.datasets import load_breast_cancer
 data = load_breast_cancer()
-
-
 df = pd.DataFrame(data= np.c_[data['data'], data['target']],
                      columns= data['feature_names'] + ['output'])
+```
 
+Assign the input and output variables to x and y.
+```Python
 x = df['mean radius'].values
 y = df['output'].values
 ```
