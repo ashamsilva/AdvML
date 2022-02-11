@@ -10,6 +10,34 @@ The final results should be clearly stated.
 
 ### Locally Weighted Regression 
 
+Locally Weighted Regression is a specialized type of linear regression which utilized weighted linear regression to make better predictions. LOWESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
+
+In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then used to find the weights for the regression. In the code section below, this particular Python code can be found within the tricubic() function.
+
+
+
+Now that we have x’, we must find its k nearest neighbors using a simple Euclidean distance. Let’s call the resulting ordered set D.
+The next step converts the set D of k distances into an ordered set W containing weights that will be later used in the linear regression process. These weights are calculated using a specialized weight function that assigns importance to each of the k neighbors of x according to its distance to x’.
+The Weight Function
+Distance weights are calculated using the tri-cubic function:
+
+Tri-cubic weighting function
+This function looks like a hat and has positive values only between -1 and 1. Outside of this interval, the function is zero. Here is what the function looks like:
+
+Graph of the tri-cubic weight function
+As this function only has positive results for -1 < x < 1, we must normalize the distance by dividing it by the maximum value observed in D. More concretely,
+
+Weighting function
+Here, we denote d(x, x’) as the distance between x, one of the k nearest neighbors, and x’. The effect of normalization is that larger distances will be associated with lower weights. At the very extreme, the point corresponding to the maximum distance will have a weight of zero, and the point at zero distance will have the highest possible weight — one. That is how the “locality” effect is achieved, by assigning higher importance to the training data that is closest to where we want the prediction to be calculated.
+As a side note, you may find that this function has a striking similarity to the tri-cubic kernel function. The difference in scale (70/81) between these functions relates to the requirement that a kernel function must integrate to one over its domain, while here that requirement is relaxed.
+We are now ready to calculate the estimate using a simple weighted linear regression that is trained with the x values from D, and the corresponding y values.
+
+
+
+
+
+
+
 ### Random Forest 
 
 
