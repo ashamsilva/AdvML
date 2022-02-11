@@ -16,12 +16,37 @@ The final results should be clearly stated.
 
 # Application of Locally Weighted Regression and Random Forest on Datasets
 
+## Funtions and Code used for Both Datasets 
+
+Import the necessary libraries and assign StandardScaler() as scale 
+```Python
+import numpy as np
+import pandas as pd
+from scipy import linalg
+import matplotlib.pyplot as plt
+from scipy.interpolate import interp1d #, griddata
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.model_selection import KFold, train_test_split as tts
+from sklearn.metrics import mean_squared_error as mse
+from sklearn.preprocessing import StandardScaler
+scale = StandardScaler()
+```
+
+
 ## Dataset 1: 
 
 MSE for each method and which has better results 
 final results 
 
+```Python
+
+```
+
 ## Dataset 2:
 
 MSE for each method and which has better results 
 final results 
+
+```Python
+
+```
