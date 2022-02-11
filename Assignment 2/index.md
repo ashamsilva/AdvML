@@ -16,7 +16,7 @@ In order to find the k nearest neighbors from x, Euclidean distance is used. The
 
 The equation for the redictions we make is:
 
-<img src="images/Assignment2.jpeg" width="400" height="600" alt="hi" class="inline"/>
+<img src="images/Assignment2.jpeg" width="800" height="200" alt="hi" class="inline"/>
 
 
 In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by usinglocally weighted regression we obtained the predicted y as a different linear combination of the values of y.
