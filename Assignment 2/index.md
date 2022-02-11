@@ -26,6 +26,12 @@ In conclusion, the predictions we make are a linear combination of the actual ob
 
 ### Random Forest 
 
+Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works fitting random subsets of the data onto decision tree. The average of their predictions are then computed.isions 
+  
+  <img src="images/Assignment2.jpeg" width="600" height="60" alt="hi" class="inline"/>
+
+  
+https://towardsdatascience.com/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3
 
 
 ## Application of Locally Weighted Regression and Random Forest on Datasets
