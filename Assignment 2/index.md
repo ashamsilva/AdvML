@@ -31,7 +31,7 @@ The importance of each node on each decision tree is caluclated. This done by Gi
 
 <img src="images/Assignment2-2.jpeg" width="600" height="60" alt="hi" class="inline"/>
 
-<img src="images/Assignment2-3.jpeg" width="400" height="60" alt="hi" class="inline"/>
+<img src="images/Assignment2-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
 
   
