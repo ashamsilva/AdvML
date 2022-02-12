@@ -2,11 +2,11 @@
 
 ### Locally Weighted Regression 
 
-Locally Weighted Regression is a specialized type of linear regression which utilized weighted linear regression to make better predictions. LOWESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
+Locally Weighted Regression is a specialized type of linear regression which utilizes weighted linear regression to in order to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
 
-In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then used to find the weights for the regression. In the code section below, this particular Python code can be found within the tricubic() function. The way in which weighting works is by giving more meaning to points closer to the x value will be given a greater weight. For example - a point with zero distance will be given a weight of one. 
+In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then utilized to find the weights for the regression. In the code section below, the execution of this can be found within the tricubic() function. In this process, weighting works by giving more meaning and greater weight the closer a point is to the x value. For example - a point with zero distance will be given a weight of one. 
 
-The equation for the redictions we make is:
+The equation for the predictions we make is:
 
 <img src="images/Assignment2.jpeg" width="400" height="60" alt="hi" class="inline"/>
 
@@ -15,17 +15,16 @@ In conclusion, the predictions we make are a linear combination of the actual ob
 
 ### Random Forest 
 
-Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works fitting random subsets of the data onto decision tree. The average of their predictions are then computed.isions 
+Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision trees predictions are then computed. 
 
-The importance of each node on each decision tree is caluclated. This done by Gini Importance. The following equation assumes that we are using a binary tree with only two child nodes.
+In order to calculate the decision tree value, the importance of each node on each decision tree is caluclated. This done through the use of Gini Importance. The following equation assumes that we are using a binary tree with only two child nodes.
 
 <img src="images/Assignment2-2.jpeg" width="600" height="60" alt="hi" class="inline"/>
 
+This equation shows the feature importance for the Random Forest:
 <img src="images/Assignment2-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
 This [Towards Data Science Article](https://towardsdatascience.com/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3) is a good resource. 
-
-  
 
 
 ## Application of Locally Weighted Regression and Random Forest on Datasets
@@ -52,7 +51,7 @@ from sklearn.datasets import load_diabetes
 from sklearn.datasets import load_breast_cancer
 ```
 
-Distance Function:
+Create the distance function.
 ```Python
 def tricubic(x):
   if len(x.shape) == 1:
@@ -61,7 +60,7 @@ def tricubic(x):
   return np.where(d>1,0,70/81*(1-d**3)**3)
 ```
 
-LOESS Regression Function:
+Create the LOESS Regression Function.
 ```Python
 def lowess_reg(x, y, xnew, kern, tau):
     n = len(x)
@@ -80,7 +79,7 @@ def lowess_reg(x, y, xnew, kern, tau):
     return f(xnew)
 ```
 
-Calculate MSE for both Random Forest and Locally Weighted Regression. A four loop was created to determine the optimal tau value. 
+Calculate MSE for both Random Forest and Locally Weighted Regression. A for loop was utilized to determine the optimal tau value. 
 ```Python
 mse_lwr = []
 mse_rf = []
@@ -99,15 +98,12 @@ for i in [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9]:
     yhat_rf = rf.predict(xtest)
     mse_lwr.append(mse(ytest,yhat_lwr))
     mse_rf.append(mse(ytest,yhat_rf))
-  print(i)
+  print('The tau value is :' + str(i))
   print('The MSE for Random Forest is :' + str(np.mean(mse_rf)))
   print('The MSE for Locally Weighted Regression is :' + str(np.mean(mse_lwr)))
 ```
 
 ### Dataset 1: Diabetes
-
-MSE for each method and which has better results 
-final results 
 
 Assign the data to a variable and make it into a Pandas dataframe.
 ```Python
@@ -132,9 +128,6 @@ The MSE for Locally Weighted Regression is :3991.3441318147006
 
 
 ### Dataset 2: Breast Cancer
-
-MSE for each method and which has better results 
-final results 
 
 Assign the data to a variable and make it into a Pandas dataframe.
 ```Python
