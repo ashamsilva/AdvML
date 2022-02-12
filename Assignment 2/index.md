@@ -1,15 +1,5 @@
 # Comparison of Locally Weighted Regression and Random Forest
 
-
-add citations?
-
-Create a new Github page with a presentation on the concepts of Locally Weighted Regression and Random Forest. 
-Apply the regression methods to real data sets, such as "Cars" or "Boston Housing Data" where you consider only one input variable (the weight of the car for the "Cars" data set and the number of rooms for the "Boston Hausing" data). The output varable is the mileage for the "Cars" data set and "cmedv" or the median price for the housing data.
-For each method and data set report the crossvalidated mean square error and determine which method is achieveng the better results.
-In this paper you should also include theoretical considerations, examples of Python coding and plots. 
-The final results should be clearly stated.
-
-
 ### Locally Weighted Regression 
 
 Locally Weighted Regression is a specialized type of linear regression which utilized weighted linear regression to make better predictions. LOWESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
@@ -131,7 +121,7 @@ Assign the input and output variables to x and y.
 x = df['bmi'].values
 y = df['output'].values
 ```
-
+#### Conclusion
 The minimum mean squared error for Random Forest was found with a tau value of 0.5. 
 The MSE for Random Forest is :4118.411965779483
 The MSE for Locally Weighted Regression is :4031.8434939716976
@@ -161,6 +151,7 @@ x = df['mean radius'].values
 y = df['output'].values
 ```
 
+#### Conclusion
 The minimum mean squared error for both Locally Weighted Regression and Random Forest were found with a tau value of 0.1. 
 The MSE for Random Forest is :0.09312817955310984
 The MSE for Locally Weighted Regression is :0.09020271929160795
