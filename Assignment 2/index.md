@@ -2,7 +2,7 @@
 
 ### Locally Weighted Regression 
 
-Locally Weighted Regression is a specialized type of linear regression which utilizes weighted linear regression to in order to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
+Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to in order to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
 
 In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then utilized to find the weights for the regression. In the code section below, the execution of this can be found within the tricubic() function. In this process, weighting works by giving more meaning and greater weight the closer a point is to the x value. For example - a point with zero distance will be given a weight of one. 
 
