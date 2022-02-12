@@ -23,9 +23,9 @@ The importance of each node on each decision tree is caluclated. This done by Gi
 
 <img src="images/Assignment2-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
+This [Towards Data Science Article](https://towardsdatascience.com/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3) is a good resource. 
 
   
-https://towardsdatascience.com/the-mathematics-of-decision-trees-random-forest-and-feature-importance-in-scikit-learn-and-spark-f2861df67e3
 
 
 ## Application of Locally Weighted Regression and Random Forest on Datasets
@@ -121,7 +121,7 @@ Assign the input and output variables to x and y.
 x = df['bmi'].values
 y = df['output'].values
 ```
-#### Conclusion
+#### Conclusion:
 The minimum mean squared error for Random Forest was found with a tau value of 0.5. 
 The MSE for Random Forest is :4118.411965779483
 The MSE for Locally Weighted Regression is :4031.8434939716976
@@ -151,7 +151,7 @@ x = df['mean radius'].values
 y = df['output'].values
 ```
 
-#### Conclusion
+#### Conclusion:
 The minimum mean squared error for both Locally Weighted Regression and Random Forest were found with a tau value of 0.1. 
 The MSE for Random Forest is :0.09312817955310984
 The MSE for Locally Weighted Regression is :0.09020271929160795
