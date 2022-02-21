@@ -7,7 +7,7 @@ For each method and data set report the crossvalidated mean square error and det
 In this paper you should also include theoretical considerations, examples of Python coding and plots. 
 The final results should be clearly stated.
 
-``` Markdown
+
 # what I did for the last one
 
 Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
@@ -17,9 +17,7 @@ In order to find the k nearest neighbors from x, Euclidean distance is used. The
 put equation here
 
 In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by using locally weighted regression we obtained the predicted y as a different linear combination of the values of y.
-
-```
-
+#end what i did for the last one
 
 # Multivariate Regression Analysis and Gradient Boosting
 
