@@ -161,7 +161,7 @@ for i in [10]:
     mse_xgb.append(mse(ytest,yhat_xgb))
     mse_nn.append(mse(ytest,yhat_nn))
     mse_NW.append(mse(ytest,yhat_sm))
-Print('The cross-validated Mean Squared Error for: ')
+print('The cross-validated Mean Squared Error for: ')
 print('LWR = ' + str(np.mean(mse_lwr)))
 print('BLWR = ' + str(np.mean(mse_blwr)))
 print('RF = ' + str(np.mean(mse_rf)))
@@ -211,9 +211,15 @@ data = np.concatenate([X,y.reshape(-1,1)],axis=1)
 The minimum Cross-validated Mean Squared Error is 51.90 and was found using Extreme Gradient Boosting.
 
 The cross-validated Mean Squared Error for 
+
 LWR = 85.89122686024714
+
 BLWR = 70.1110505540548
+
 RF = 100.35401593594011
+
 XGB = 51.901217734256235
+
 NN = 92.02494297501055
+
 Nadarya-Watson Regressor = 58.63711029059199
