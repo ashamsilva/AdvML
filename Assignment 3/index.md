@@ -25,8 +25,9 @@ In conclusion, the predictions we make are a linear combination of the actual ob
 
 Multivariate regression analysis is a more robust continuation of a linear regression analysis and has more than one dependent variable. Unlike linear regressions, we do not have to make assumptions regarding predictors. Linear regressions which define y as a function of x. Multivariate regression analysis allows us to define y as a function of multiple variables (ie. x and z) such that y = f(x,z). In adding this additional variable, an additional dimension is added as well. In the example that y is a function of x and z a plane would be predicted. 
 
-$\beta_0$
-
+```latex
+$\beta$
+```
 
 
 
