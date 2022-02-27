@@ -1,12 +1,3 @@
-# Assignment 
-
-Create a new Github page with a presentation on the concepts of Multivariate Regression Analysis and Gradient Boosting. Include a presentation of Extreme Gradient Boosting (xgboost).
-
-Apply the regression methods (including lowess and boosted lowess) to real data sets, such as "Cars" and "Boston Housing Data".  Record the cross-validated mean square errors and the mean absolute errors.
-For each method and data set report the crossvalidated mean square error and determine which method is achieveng the better results.
-In this paper you should also include theoretical considerations, examples of Python coding and plots. 
-The final results should be clearly stated.
-
 # Multivariate Regression Analysis and Gradient Boosting
 
 ### Multivariate Regression Analysis
@@ -19,7 +10,6 @@ y = B0 + B1*X1 + B2*X2 + ... + Bn+Xn
 ### Gradient Boosting
 
 Gradient boosting, or gbm, is a method used in machine learning to increase the stregth of learners. When gradient boosting is used, each additional tree is fit on a version of the orginal dataset that has been modified. Using these decision trees, the model is trained and produces a final prediction value of the dependent variable. This process takes the mean from the original dataset and adds the residuals predicted by the decision trees in the forest. Extreme Gradient Boosting is a derivative of gradient boosting that uses regularization parameters in order to prevent overfitting.
-
 
 ## Application of Locally Weighted Regression and Random Forest on Datasets
 
