@@ -186,10 +186,15 @@ data = np.concatenate([X,y.reshape(-1,1)],axis=1)
 The minimum Cross-validated Mean Squared Error is 41.89 and was found using Extreme Gradient Boosting.
 
 The cross-validated Mean Squared Error for:
+
 LWR = 54.90110127773951
+
 RF = 51.33316103879288
+
 XGB = 41.89036168258404
+
 NN = 44.70710846876278
+
 Nadarya-Watson Regressor = 45.506043382147325
 
 
