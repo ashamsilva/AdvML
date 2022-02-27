@@ -2,7 +2,7 @@
 
 ### Multivariate Regression Analysis
 
-Multivariate regression analysis is a more robust continuation of a linear regression analysis and has more than one independent variable. Unlike linear regressions, we do not have to make assumptions regarding predictors. Linear regressions which define y as a function of x. Multivariate regression analysis allows us to define y as a function of multiple variables (ie. x and z) such that y = f(x,z). In adding this additional variable, an additional dimension is added as well. In the example that y is a function of x and z a plane would be predicted. 
+Multivariate regression analysis is a more robust continuation of a linear regression analysis and has more than one independent variable. Unlike linear regressions, we do not have to make as many assumptions regarding predictors. Linear regressions define y as a function of x. Multivariate regression analysis allows us to define y as a function of multiple variables (ie. x and z) such that y = f(x,z). In adding this additional variable, an additional dimension is added as well. In the example that y is a function of x and z a plane would be predicted.
 
 The equation for the predictions we make is:
 y = B0 + B1*X1 + B2*X2 + ... + Bn+Xn
@@ -59,7 +59,7 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
     n = len(X) # the number of observations
     yest = np.zeros(n)
 
-    if len(y.shape)==1: # here we make column vectors
+    if len(y.shape)==1:
       y = y.reshape(-1,1)
     if len(X.shape)==1:
       X = X.reshape(-1,1)
@@ -68,24 +68,21 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
     else:
       X1 = X
 
-    w = np.array([kern((X - X[i])/(2*tau)) for i in range(n)]) # here we compute n vectors of weights
+    w = np.array([kern((X - X[i])/(2*tau)) for i in range(n)])
 
 for i in range(n):          
         W = np.diag(w[:,i])
         b = np.transpose(X1).dot(W).dot(y)
         A = np.transpose(X1).dot(W).dot(X1)
-        #A = A + 0.001*np.eye(X1.shape[1]) # if we want L2 regularization
-        #theta = linalg.solve(A, b) # A*theta = b
         beta, res, rnk, s = lstsq(A, b)
         yest[i] = np.dot(X1[i],beta)
     if X.shape[1]==1:
       f = interp1d(X.flatten(),yest,fill_value='extrapolate')
     else:
       f = LinearNDInterpolator(X, yest)
-    output = f(xnew) # the output may have NaN's where the data points from xnew are outside the convex hull of X
+    output = f(xnew)
     if sum(np.isnan(output))>0:
       g = NearestNDInterpolator(X,y.ravel()) 
-      # output[np.isnan(output)] = g(X[np.isnan(output)])
       output[np.isnan(output)] = g(xnew[np.isnan(output)])
     return output
 
@@ -108,15 +105,23 @@ def lowess_reg(x, y, xnew, kern, tau):
 
 
 def boosted_lwr(X, y, xnew, kern, tau, intercept):
-  # we need decision trees
-  # for training the boosted method we use X and y
+  # train boosted decision trees using X and y
   Fx = lw_reg(X,y,X,kern,tau,intercept) 
-  # Now train the Decision Tree on y_i - F(x_i)
+  # Train Decision Tree on y_i - F(x_i)
   new_y = y - Fx
   model = RandomForestRegressor(n_estimators=100,max_depth=2)
   model.fit(X,new_y)
   output = model.predict(xnew) + lw_reg(X,y,xnew,kern,tau,intercept)
   return output 
+  
+model_nn = Sequential()
+model_nn.add(Dense(128, activation="relu", input_dim=3))
+model_nn.add(Dense(128, activation="relu"))
+model_nn.add(Dense(128, activation="relu"))
+model_nn.add(Dense(128, activation="relu"))
+model_nn.add(Dense(1, activation="linear"))
+model_nn.compile(loss='mean_squared_error', optimizer=Adam(learning_rate=1e-2)) # lr=1e-3, decay=1e-3 / 200)
+es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=800)
  ```
 
 Calculate MSE for Locally Weighted Regression, Boosted Locally Weighted Regression, Random Forest, Extreme Gradient Boosting, Neural Network and Nadarya-Watson Regressor
@@ -182,9 +187,9 @@ The minimum Cross-validated Mean Squared Error is 41.89 and was found using Extr
 
 The cross-validated Mean Squared Error for:
 LWR = 54.90110127773951
-RF is : 51.33316103879288
-XGB is : 41.89036168258404
-NN is : 44.70710846876278
+RF = 51.33316103879288
+XGB = 41.89036168258404
+NN = 44.70710846876278
 Nadarya-Watson Regressor = 45.506043382147325
 
 
