@@ -67,16 +67,13 @@ def tricubic(x):
 
 ```Python
 def lw_reg(X, y, xnew, kern, tau, intercept):
-    # tau is called bandwidth K((x-x[i])/(2*tau))
     n = len(X) # the number of observations
     yest = np.zeros(n)
 
     if len(y.shape)==1: # here we make column vectors
       y = y.reshape(-1,1)
-
     if len(X.shape)==1:
       X = X.reshape(-1,1)
-    
     if intercept:
       X1 = np.column_stack([np.ones((len(X),1)),X])
     else:
@@ -84,8 +81,7 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
 
     w = np.array([kern((X - X[i])/(2*tau)) for i in range(n)]) # here we compute n vectors of weights
 
-    #Looping through all X-points
-    for i in range(n):          
+for i in range(n):          
         W = np.diag(w[:,i])
         b = np.transpose(X1).dot(W).dot(y)
         A = np.transpose(X1).dot(W).dot(X1)
@@ -129,12 +125,10 @@ Create the boosted LOESS Regression Function
 def boosted_lwr(X, y, xnew, kern, tau, intercept):
   # we need decision trees
   # for training the boosted method we use X and y
-  Fx = lw_reg(X,y,X,kern,tau,intercept) # we need this for training the Decision Tree
+  Fx = lw_reg(X,y,X,kern,tau,intercept) 
   # Now train the Decision Tree on y_i - F(x_i)
   new_y = y - Fx
-  #model = DecisionTreeRegressor(max_depth=2, random_state=123)
   model = RandomForestRegressor(n_estimators=100,max_depth=2)
-  #model = model_xgb
   model.fit(X,new_y)
   output = model.predict(xnew) + lw_reg(X,y,xnew,kern,tau,intercept)
   return output 
@@ -158,8 +152,8 @@ for i in [10]:
     xtest = X[idxtest]
     xtrain = scale.fit_transform(xtrain)
     xtest = scale.transform(xtest)
-    dat_train = np.concatenate([xtrain,ytrain.reshape(-1,1)],axis=1)
-    dat_test = np.concatenate([xtest,ytest.reshape(-1,1)],axis=1)
+    data_train = np.concatenate([xtrain,ytrain.reshape(-1,1)],axis=1)
+    data_test = np.concatenate([xtest,ytest.reshape(-1,1)],axis=1)
     yhat_lwr = lw_reg(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
     yhat_blwr = boosted_lwr(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
     model_rf = RandomForestRegressor(n_estimators=100,max_depth=3)
@@ -170,21 +164,21 @@ for i in [10]:
     yhat_xgb = model_xgb.predict(xtest)
     model_nn.fit(xtrain,ytrain,validation_split=0.2, epochs=500, batch_size=10, verbose=0, callbacks=[es])
     yhat_nn = model_nn.predict(xtest)
-    # here is the application of the N-W regressor
-    model_KernReg = KernelReg(endog=dat_train[:,-1],exog=dat_train[:,:-1],var_type='ccc',ckertype='gaussian')
-    yhat_sm, yhat_std = model_KernReg.fit(dat_test[:,:-1])
+    model_KernReg = KernelReg(endog=data_train[:,-1],exog=data_train[:,:-1],var_type='ccc',ckertype='gaussian')
+    yhat_sm, yhat_std = model_KernReg.fit(data_test[:,:-1])
     mse_lwr.append(mse(ytest,yhat_lwr))
     mse_blwr.append(mse(ytest,yhat_blwr))
     mse_rf.append(mse(ytest,yhat_rf))
     mse_xgb.append(mse(ytest,yhat_xgb))
     mse_nn.append(mse(ytest,yhat_nn))
     mse_NW.append(mse(ytest,yhat_sm))
-print('The Cross-validated Mean Squared Error for LWR is : '+str(np.mean(mse_lwr)))
-print('The Cross-validated Mean Squared Error for BLWR is : '+str(np.mean(mse_blwr)))
-print('The Cross-validated Mean Squared Error for RF is : '+str(np.mean(mse_rf)))
-print('The Cross-validated Mean Squared Error for XGB is : '+str(np.mean(mse_xgb)))
-print('The Cross-validated Mean Squared Error for NN is : '+str(np.mean(mse_nn)))
-print('The Cross-validated Mean Squared Error for Nadarya-Watson Regressor is : '+str(np.mean(mse_NW)))
+Print('The cross-validated Mean Squared Error for: ')
+print('LWR = ' + str(np.mean(mse_lwr)))
+print('BLWR = ' + str(np.mean(mse_blwr)))
+print('RF = ' + str(np.mean(mse_rf)))
+print('XGB = ' + str(np.mean(mse_xgb)))
+print('NN = ' + str(np.mean(mse_nn)))
+print('Nadarya-Watson Regressor = ' + str(np.mean(mse_NW)))
 ```
 
 ### Dataset 1: Housing
@@ -201,12 +195,15 @@ data = np.concatenate([X,y.reshape(-1,1)],axis=1)
 ```
 
 #### Conclusion:
-The Cross-validated Mean Squared Error for LWR is : 54.90110127773951
-The Cross-validated Mean Squared Error for BLWR is : 51.35473983508386
-The Cross-validated Mean Squared Error for RF is : 51.33316103879288
-The Cross-validated Mean Squared Error for XGB is : 41.89036168258404
-The Cross-validated Mean Squared Error for NN is : 44.70710846876278
-The Cross-validated Mean Squared Error for Nadarya-Watson Regressor is : 45.506043382147325
+
+The minimum Cross-validated Mean Squared Error is 
+
+The cross-validated Mean Squared Error for:
+LWR = 54.90110127773951
+RF is : 51.33316103879288
+XGB is : 41.89036168258404
+NN is : 44.70710846876278
+Nadarya-Watson Regressor = 45.506043382147325
 
 
 ### Dataset 2: Concrete
@@ -225,9 +222,13 @@ data = np.concatenate([X,y.reshape(-1,1)],axis=1)
 
 
 #### Conclusion:
-The Cross-validated Mean Squared Error for LWR is : 85.89122686024714
-The Cross-validated Mean Squared Error for BLWR is : 70.1110505540548
-The Cross-validated Mean Squared Error for RF is : 100.35401593594011
-The Cross-validated Mean Squared Error for XGB is : 51.901217734256235
-The Cross-validated Mean Squared Error for NN is : 92.02494297501055
-The Cross-validated Mean Squared Error for Nadarya-Watson Regressor is : 58.63711029059199
+
+The minimum Cross-validated Mean Squared Error is 
+
+The cross-validated Mean Squared Error for 
+LWR = 85.89122686024714
+BLWR = 70.1110505540548
+RF = 100.35401593594011
+XGB = 51.901217734256235
+NN = 92.02494297501055
+Nadarya-Watson Regressor = 58.63711029059199
