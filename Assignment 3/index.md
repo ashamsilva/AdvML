@@ -54,8 +54,6 @@ from keras.callbacks import EarlyStopping
 scale = StandardScaler()
 ```
 
-
-
 Create the distance function.
 ```Python
 def tricubic(x):
@@ -65,6 +63,7 @@ def tricubic(x):
   return np.where(d>1,0,70/81*(1-d**3)**3)
 ```
 
+Create Regression Functions
 ```Python
 def lw_reg(X, y, xnew, kern, tau, intercept):
     n = len(X) # the number of observations
@@ -99,10 +98,8 @@ for i in range(n):
       # output[np.isnan(output)] = g(X[np.isnan(output)])
       output[np.isnan(output)] = g(xnew[np.isnan(output)])
     return output
-```
 
-Create the LOESS Regression Function.
-```Python
+
 def lowess_reg(x, y, xnew, kern, tau):
     n = len(x)
     yest = np.zeros(n)
@@ -118,10 +115,8 @@ def lowess_reg(x, y, xnew, kern, tau):
         yest[i] = theta[0] + theta[1] * x[i] 
     f = interp1d(x, yest,fill_value='extrapolate')
     return f(xnew)
-```
 
-Create the boosted LOESS Regression Function
-```Python
+
 def boosted_lwr(X, y, xnew, kern, tau, intercept):
   # we need decision trees
   # for training the boosted method we use X and y
@@ -134,7 +129,7 @@ def boosted_lwr(X, y, xnew, kern, tau, intercept):
   return output 
  ```
 
-Calculate MSE for 
+Calculate MSE for Locally Weighted Regression, Boosted Locally Weighted Regression, Random Forest, Extreme Gradient Boosting, Neural Network and Nadarya-Watson Regressor
 ```Python
 mse_lwr = []
 mse_blwr = []
@@ -144,7 +139,6 @@ mse_nn = []
 mse_NW = []
 for i in [10]:
   kf = KFold(n_splits=10,shuffle=True,random_state=i)
-  # this is the Cross-Validation Loop
   for idxtrain, idxtest in kf.split(X):
     xtrain = X[idxtrain]
     ytrain = y[idxtrain]
@@ -183,11 +177,9 @@ print('Nadarya-Watson Regressor = ' + str(np.mean(mse_NW)))
 
 ### Dataset 1: Housing
 
+Import the data and assign X and y
 ```Python
-# import the data
 housing = pd.read_csv('/content/drive/MyDrive/AML/data/Boston Housing Prices.csv')
-
-# assign X and y
 X = housing[['longitude','latitude','nox']].values
 y = housing['cmedv'].values
 
@@ -196,7 +188,7 @@ data = np.concatenate([X,y.reshape(-1,1)],axis=1)
 
 #### Conclusion:
 
-The minimum Cross-validated Mean Squared Error is 
+The minimum Cross-validated Mean Squared Error is 41.89 and was found using Extreme Gradient Boosting.
 
 The cross-validated Mean Squared Error for:
 LWR = 54.90110127773951
@@ -208,12 +200,10 @@ Nadarya-Watson Regressor = 45.506043382147325
 
 ### Dataset 2: Concrete
 
-Assign the data to a variable and make it into a Pandas dataframe.
+Import the data and assign X and y
 ```Python
 # import the data
 concrete = pd.read_csv('/content/drive/MyDrive/AML/data/concrete.csv')
-
-# assign X and y
 X = concrete[['cement',	'slag',	'age']].values
 y = concrete['strength'].values
 
@@ -223,7 +213,7 @@ data = np.concatenate([X,y.reshape(-1,1)],axis=1)
 
 #### Conclusion:
 
-The minimum Cross-validated Mean Squared Error is 
+The minimum Cross-validated Mean Squared Error is 51.90 and was found using Extreme Gradient Boosting.
 
 The cross-validated Mean Squared Error for 
 LWR = 85.89122686024714
