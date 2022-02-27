@@ -23,21 +23,22 @@ In conclusion, the predictions we make are a linear combination of the actual ob
 
 ### Multivariate Regression Analysis
 
-Multivariate regression analysis is a more robust continuation of a linear regression analysis and has more than one dependent variable. Unlike linear regressions, we do not have to make assumptions regarding predictors. Linear regressions which define y as a function of x. Multivariate regression analysis allows us to define y as a function of multiple variables (ie. x and z) such that y = f(x,z). In adding this additional variable, an additional dimension is added as well. In the example that y is a function of x and z a plane would be predicted. 
-
-```latex
-$\beta$
-```
-
-
+Multivariate regression analysis is a more robust continuation of a linear regression analysis and has more than one independent variable. Unlike linear regressions, we do not have to make assumptions regarding predictors. Linear regressions which define y as a function of x. Multivariate regression analysis allows us to define y as a function of multiple variables (ie. x and z) such that y = f(x,z). In adding this additional variable, an additional dimension is added as well. In the example that y is a function of x and z a plane would be predicted. 
 
 The equation for the predictions we make is:
-
-<img src="images/Assignment2.jpeg" width="400" height="60" alt="hi" class="inline"/>
-
+y = B0 + B1*X1 + B2*X2 + ... + Bn+Xn
 
 
 ### Gradient Boosting
+
+Gradient boosting, or gbm, is a method used in machine learning to increase the stregth of learners. When gradient boosting is used, each additional tree is fit on a version of the orginal dataset that has been modified. Using these decision trees, the model is trained and produces a final prediction value of the dependent variable. This process takes the mean from the original dataset and adds the residuals predicted by the decision trees in the forest.
+
+
+
+
+
+
+
 
 #### Extreme Gradient Boosting (xgboost)
 
