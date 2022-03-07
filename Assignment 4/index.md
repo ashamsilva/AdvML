@@ -77,14 +77,11 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
     return output
 ```
 
-Create a neural network and a boosted linear weighted regression  
+Create a neural network and a linear weighted regression boosted by Decision Trees
 
 ```Python
 def boosted_lwr(X, y, xnew, kern, tau, intercept):
-  # we need decision trees
-  # for training the boosted method we use X and y
   Fx = lw_reg(X,y,X,kern,tau,intercept) # we need this for training the Decision Tree
-  # Now train the Decision Tree on y_i - F(x_i)
   new_y = y - Fx
   tree_model = DecisionTreeRegressor(max_depth=2, random_state=123)
   tree_model.fit(X,new_y)
