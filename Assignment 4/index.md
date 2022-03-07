@@ -1,6 +1,4 @@
-# Assignment 4
-
-## Part 1 
+# Assignment 4: Part 1 
 
 Import the necessary libraries and initialize StandardScaler() as scale
 
@@ -164,9 +162,50 @@ KR = 58.63711029059199
 
 Kernal Regression was able to produce the lowest MSE is the Extreme Gradient Boosting method with an MSE of 51.90.
 
-## Part 2
+# Assignment 4: Part 2
 
 LightGBM optimizes both speed and memory usage. Unlike other boosting tools which use pre-sort-based algorithms, LightGBM uses histogram-based algorithms. This sorts continuous features, or independent variables, into discrete bins. By doing so the process uses less memory storage and takes less time. As mentioned, there are several benefits to histogram-based algorithms which include increased speed. This is because the process uses a fast sum-up operation and once the histogram has been computed, the data is sorted into a set number of bins which is less than the sum of the individual data points. The process of replacing the continuous values of the data with discrete bins is also what drives the reduced memory usage. Another benefit of LightGBM is the use of leaf-wise tree growth over level tree growth. Leaf-wise tree growth splits the best node one level down creating a asymmetric tree. One issue with the level tree growth approach is the possibility of overfitting. This is prevented by setting a max-depth to limit tree depth. LightGBM has also been shown to speed up the
 training process of conventional Gradient Boosting Decision Tree.
+
+```Python
+# Import additional libraries
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error,roc_auc_score,precision_score
+
+data = pd.read_csv('/content/drive/MyDrive/AML/data/concrete.csv')
+X = data[['cement',	'slag',	'age']].values
+y = data['strength'].values
+
+# scale the data
+scale =StandardScaler()
+Xtrain,Xtest,ytrain,ytest=train_test_split(X,y,test_size=0.3,random_state=0)
+Xtrain = scale.fit_transform(Xtrain)
+Xtest = scale.transform(Xtest)
+
+# Convert into LGB Dataset Format
+train=lgb.Dataset(Xtrain, label=ytrain)
+# Set the parameters 
+params={'learning_rate': 0.03, 
+        'boosting_type':'gbdt', #GradientBoostingDecisionTree
+        'objective':'regression',#regression task
+        'n_estimators':100,
+        'max_depth':10}
+# Create and train the model
+clf=lgb.train(params, train,100)
+# model prediction 
+ypred=clf.predict(Xtest)
+# MSE 
+mean_squared_error(ypred,ytest)
+```
+
+## Conclusion
+The MSE found from this method was 52.29
+
+
+
+
+
+
+
 
 
