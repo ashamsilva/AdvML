@@ -212,6 +212,7 @@ print("Average RMSE:", np.mean(rmse))
 print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 
+Elastic Net
 ```Python
 ENreg = ElasticNet(max_iter=1200)
 params = [{'alpha':np.linspace(0.001,1,num=50),'l1_ratio':np.linspace(0,1,num=50)}]
