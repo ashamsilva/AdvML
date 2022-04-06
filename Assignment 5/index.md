@@ -27,7 +27,7 @@ from scipy.optimize import minimize
 
 ## Question 1: 
 
-SCAD
+#### SCAD
 ```Python
 def scad_penalty(beta_hat, lambda_val, a_val):
     is_linear = (np.abs(beta_hat) <= lambda_val)
@@ -49,8 +49,6 @@ class SCAD(BaseEstimator):
       self.lam = lam
 
     def fit(self, X, y): 
-      # we add aan extra columns of 1 for the intercept
-      #X = np.c_[np.ones((n,1)),X]
       n = X.shape[0]
       p = X.shape[1]
       def scad(beta):
@@ -73,7 +71,6 @@ class SCAD(BaseEstimator):
       return x.dot(self.coef)
 
     def get_params(self, deep=True):
-    # suppose this estimator has parameters "alpha" and "recursive"
       return {"lam": self.lam, 'a': self.alpha}
 
     def set_params(self, **parameters):
@@ -82,9 +79,9 @@ class SCAD(BaseEstimator):
       return self
 ```
 
-SQRT Lasso
+#### SQRT Lasso
 ```Python
-class SQRTLasso(BaseEstimator): #, RegressorMixin):
+class SQRTLasso(BaseEstimator): 
     def __init__(self, maxiter = 12000, alpha=0.01):
         self.maxiter = maxiter
         self.alpha = alpha
@@ -134,17 +131,17 @@ r = toeplitz(v)
 mu = [0]*p
 sigma = 3.5
 
-# Generate the random samples.
+# Generate  samples
 np.random.seed(123)
-x = np.random.multivariate_normal(mu, toeplitz(v), size=n) # this where we generate some fake data
+x = np.random.multivariate_normal(mu, toeplitz(v), size=n) 
 y = np.matmul(x,beta_star).reshape(-1,1) + sigma*np.random.normal(0,1,size=(n,1))
 
-# what we want to detect is the position of the actual information or "signal"
+# detect the position of the actual information or "signal"
 pos = np.where(beta_star != 0)
 ```
 ## Question 3:
 
-Ridge 
+#### Ridge 
 ```Python
 ridge_reg = Ridge()
 params = [{'alpha':np.linspace(0.001,10,num=50)}]
@@ -175,10 +172,12 @@ print("Average RMSE:", np.mean(rmse))
 print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 27.0
+
 Average RMSE: 5.993548577298991
+
 Average L2 Distance to Ideal: 3.0194654516702113
 
-Lasso
+#### Lasso
 ```Python
 model = Lasso()
 with warnings.catch_warnings():
@@ -213,10 +212,12 @@ print("Average RMSE:", np.mean(rmse))
 print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 23.8
+
 Average RMSE: 4.010829295726692
+
 Average L2 Distance to Ideal: 3.6606059802920043
 
-Elastic Net
+#### Elastic Net
 ```Python
 ENreg = ElasticNet(max_iter=1200)
 params = [{'alpha':np.linspace(0.001,1,num=50),'l1_ratio':np.linspace(0,1,num=50)}]
@@ -247,18 +248,18 @@ print("Average RMSE:", np.mean(rmse))
 print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 25.6
+
 Average RMSE: 3.8884725670875446
+
 Average L2 Distance to Ideal: 3.0824983981417753
 
-SCAD
+#### SCAD
 ```Python
 model = SCAD()
 with warnings.catch_warnings():
   warnings.simplefilter("ignore")
   scad_params = [{'lam': np.linspace(0.001, 1, 25), 'a': np.linspace(.1, 3, 25)}]
-
   grid = GridSearchCV(model, scad_params, cv = 5, scoring='neg_mean_absolute_error')
-
   grid.fit(X, y)
   
   
@@ -283,14 +284,15 @@ print("Average RMSE:", np.mean(rmse))
 print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 27.0
+
 Average RMSE: 9.069864242200328
+
 Average L2 Distance to Ideal: 6.343565875213969
 
-SQRT Lasso
+#### SQRT Lasso
 ```Python
 def validate(model, x, y, nfolds = 10, rs = 123):
   kf = KFold(n_splits = nfolds, shuffle = True, random_state = rs)
-  # prediction error
   PE = []
   for idxtrain, idxtest in kf.split(x):
     xtrain = x[idxtrain]
@@ -337,5 +339,7 @@ print("Average RMSE:", np.mean(rmse))
 print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 27.0
+
 Average RMSE: 3.9151925764275965
+
 Average L2 Distance to Ideal: 1.3281744764820536
