@@ -213,9 +213,9 @@ print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 23.8
 
-Average RMSE: 4.010829295726692
+Average RMSE: 4.01
 
-Average L2 Distance to Ideal: 3.6606059802920043
+Average L2 Distance to Ideal: 3.66
 
 #### Elastic Net
 ```Python
@@ -249,9 +249,9 @@ print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 25.6
 
-Average RMSE: 3.8884725670875446
+Average RMSE: 3.89
 
-Average L2 Distance to Ideal: 3.0824983981417753
+Average L2 Distance to Ideal: 3.08
 
 #### SCAD
 ```Python
@@ -285,9 +285,9 @@ print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 27.0
 
-Average RMSE: 9.069864242200328
+Average RMSE: 9.07
 
-Average L2 Distance to Ideal: 6.343565875213969
+Average L2 Distance to Ideal: 6.34
 
 #### SQRT Lasso
 ```Python
@@ -340,6 +340,6 @@ print("Average L2 Distance to Ideal:", np.mean(l2_dist))
 ```
 Average true non-zero coefficients: 27.0
 
-Average RMSE: 3.9151925764275965
+Average RMSE: 3.92
 
-Average L2 Distance to Ideal: 1.3281744764820536
+Average L2 Distance to Ideal: 1.33
