@@ -1,4 +1,19 @@
-```Python
+``` Python
+
+```
+
+``` Python
+
+```
+
+``` Python
+
+```
+
+### Import Libraries
+``` Python
+# general imports
+# some libraries
 import numpy as np
 import pandas as pd
 from scipy.linalg import lstsq
@@ -19,19 +34,21 @@ from keras.models import Sequential
 from keras.layers import Dense
 from keras.layers import Dropout
 from sklearn.metrics import r2_score
-from tensorflow.keras.optimizers import Adam, SGD, RMSprop # they recently updated Tensorflow
+from tensorflow.keras.optimizers import Adam, SGD, RMSprop 
 from keras.callbacks import EarlyStopping
 import xgboost as xgb
 ```
 
-```Python
+### Read in Data
+``` Python
 df = pd.read_csv('/content/drive/MyDrive/AML/data/Crime  Ecomonic Factors Datasets.csv')
 
 x = df.loc[:,'Gini_Index':'Urban_Population (%)'].values
 y = df['Homicide_Rate'].values
 ```
 
-```Python
+### Define Functions Used in Analysis
+``` Python
 # Tricubic Kernel
 def Tricubic(x):
   if len(x.shape) == 1:
@@ -46,55 +63,6 @@ def Epanechnikov(x):
   d = np.sqrt(np.sum(x**2,axis=1))
   return np.where(d>1,0,3/4*(1-d**2)) 
 
-#Defining the kernel local regression model
-
-def lw_reg(X, y, xnew, kern, tau, intercept):
-    # tau is called bandwidth K((x-x[i])/(2*tau))
-    n = len(X)    # the number of obbservations
-    yest = np.zeros(n)
-
-    if len(y.shape)==1:
-      y = y.reshape(-1,1)
-
-    if len(X.shape)==1:
-      X = X.reshape(-1,1)
-    
-    if intercept:
-      X1 = np.column_stack([np.ones((len(X),1)),X])
-    else:
-      X1 = X
-
-    w = np.array([kern((X - X[i])/(2*tau)) for i in range(n)]) 
-
-    #Looping through all X-points
-    for i in range(n):          
-        W = np.diag(w[:,i])
-        b = np.transpose(X1).dot(W).dot(y)
-        A = np.transpose(X1).dot(W).dot(X1)
-        #A = A + 0.001*np.eye(X1.shape[1]) # if we want L2 regularization
-        #theta = linalg.solve(A, b) # A*theta = b
-        theta, res, rnk, s = lstsq(A, b)
-        yest[i] = np.dot(X1[i],theta)
-    if X.shape[1]==1:
-      f = interp1d(X.flatten(),yest,fill_value='extrapolate')
-    else:
-      f = LinearNDInterpolator(X, yest)
-    output = f(xnew)    # the output may have Nan's where the data points from xnew are outside the convex hull of x 
-    if sum(np.isnan(output))>0:
-      g = NearestNDInterpolator(X,y.ravel()) 
-      # output[np.isnan(output)] = g(X[np.isnan(output)])
-      output[np.isnan(output)] = g(xnew[np.isnan(output)])
-
-    return output
-```
-
-```Python
-kf = KFold(n_splits = 10, shuffle = True, random_state = 1234)
-scale = StandardScaler()
-```
-
-
-```Python
 #Defining the kernel local regression model
 
 def lw_reg(X, y, xnew, kern, tau, intercept):
@@ -134,8 +102,9 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
       # output[np.isnan(output)] = g(X[np.isnan(output)])
       output[np.isnan(output)] = g(xnew[np.isnan(output)])
     return output
+    
 
-def boosted_lwr(X, y, xnew, kern, tau, intercept):
+def boosted_lwr_rf(X, y, xnew, kern, tau, intercept):
   # we need decision trees
   # for training the boosted method we use X and y
   Fx = lw_reg(X,y,X,kern,tau,intercept) # we need this for training the Decision Tree
@@ -147,9 +116,23 @@ def boosted_lwr(X, y, xnew, kern, tau, intercept):
   model.fit(X,new_y)
   output = model.predict(xnew) + lw_reg(X,y,xnew,kern,tau,intercept)
   return output 
+
+def boosted_lwr_dt(X, y, xnew, kern, tau, intercept):
+  Fx = lw_reg(X,y,X,kern,tau,intercept) # we need this for training the Decision Tree
+  new_y = y - Fx
+  tree_model = DecisionTreeRegressor(max_depth=2, random_state=123)
+  tree_model.fit(X,new_y)
+  output = tree_model.predict(xnew) + lw_reg(X,y,xnew,kern,tau,intercept)
+  return output 
 ```
 
-```Python
+### Conduct the Analysis
+
+``` Python
+kf = KFold(n_splits = 10, shuffle = True, random_state = 1234)
+scale = StandardScaler()
+
+# establish Nerual Networks 
 model_nn = Sequential()
 model_nn.add(Dense(128, activation="relu", input_dim=8))
 model_nn.add(Dense(128, activation="relu"))
@@ -160,9 +143,10 @@ model_nn.compile(loss='mean_squared_error', optimizer=Adam(learning_rate=1e-2)) 
 es = EarlyStopping(monitor='val_loss', mode='min', verbose=1, patience=800)
 ```
 
-```Python
+``` Python
 mse_lwr = []
-mse_blwr = []
+mse_blwr_rf = []
+mse_blwr_dt = []
 mse_rf = []
 mse_xgb = []
 mse_nn = []
@@ -179,7 +163,10 @@ for i in [10]:
     data_train = np.concatenate([xtrain,ytrain.reshape(-1,1)],axis=1)
     data_test = np.concatenate([xtest,ytest.reshape(-1,1)],axis=1)
     yhat_lwr = lw_reg(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
-    yhat_blwr = boosted_lwr(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
+    
+    yhat_blwr_rf = boosted_lwr_rf(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
+    yhat_blwr_dt = boosted_lwr_dt(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
+
     model_rf = RandomForestRegressor(n_estimators=100,max_depth=3)
     model_rf.fit(xtrain,ytrain)
     yhat_rf = model_rf.predict(xtest)
@@ -188,24 +175,78 @@ for i in [10]:
     yhat_xgb = model_xgb.predict(xtest)
     model_nn.fit(xtrain,ytrain,validation_split=0.2, epochs=500, batch_size=10, verbose=0, callbacks=[es])
     yhat_nn = model_nn.predict(xtest)
-    # model_KernReg = KernelReg(endog=data_train[:,-1],exog=data_train[:,:-1],var_type='ccc') #,ckertype='gaussian')
-
-
-    # (endog, exog, var_type, reg_type='ll', bw='cv_ls', defaults=None)
-
-
-    # yhat_sm, yhat_std = model_KernReg.fit(data_test[:,:-1])
     mse_lwr.append(mse(ytest,yhat_lwr))
-    mse_blwr.append(mse(ytest,yhat_blwr))
+    mse_blwr_rf.append(mse(ytest,yhat_blwr_rf))
+    mse_blwr_dt.append(mse(ytest,yhat_blwr_dt))
+
     mse_rf.append(mse(ytest,yhat_rf))
     mse_xgb.append(mse(ytest,yhat_xgb))
     mse_nn.append(mse(ytest,yhat_nn))
-    # mse_NW.append(mse(ytest,yhat_sm))
 print('The cross-validated Mean Squared Error for: ')
 print('LWR = ' + str(np.mean(mse_lwr)))
-print('BLWR = ' + str(np.mean(mse_blwr)))
+print('BLWR Random Forest = ' + str(np.mean(mse_blwr_rf)))
+print('BLWR Decision Tree = ' + str(np.mean(mse_blwr_dt)))
+
 print('RF = ' + str(np.mean(mse_rf)))
 print('XGB = ' + str(np.mean(mse_xgb)))
 print('NN = ' + str(np.mean(mse_nn)))
-# print('Nadarya-Watson Regressor = ' + str(np.mean(mse_NW)))
+```
+The cross-validated Mean Squared Error for: 
+LWR = 4.037200980140024
+BLWR Random Forest = 3.997431350607031
+BLWR Decision Tree = 4.005014642729419
+RF = 4.4181823129054205
+XGB = 4.929575394796289
+NN = 3.1709550822808104
+
+``` Python
+# LightGBM
+
+# Import additional libraries
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error,roc_auc_score,precision_score
+import warnings
+
+
+# scale the data
+scale =StandardScaler()
+xtrain,xtest,ytrain,ytest = train_test_split(x,y,test_size=0.3,random_state=1234)
+xtrain = scale.fit_transform(xtrain)
+xtest = scale.transform(xtest)
+
+with warnings.catch_warnings():
+  warnings.simplefilter("ignore")
+  # Convert into LGB Dataset Format
+  train=lgb.Dataset(xtrain, label=ytrain)
+  # Set the parameters 
+  params={'learning_rate': 0.03, 
+          'boosting_type':'gbdt', #GradientBoostingDecisionTree
+          'objective':'regression',#regression task
+          'n_estimators':100,
+          'max_depth':10}
+  # Create and train the model
+  clf=lgb.train(params, train,100)
+  # model prediction 
+  ypred=clf.predict(xtest)
+  # MSE 
+  print(mean_squared_error(ypred,ytest))
+```
+4.695227149101829
+
+
+### Conclusion
+
+The Neural Network had the best cross-validated Mean Squared Error at 3.17.
+
+
+``` Python
+
+```
+
+``` Python
+
+```
+
+``` Python
+
 ```
