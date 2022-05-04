@@ -1,15 +1,3 @@
-``` Python
-
-```
-
-``` Python
-
-```
-
-``` Python
-
-```
-
 ### Import Libraries
 ``` Python
 # general imports
