@@ -151,10 +151,8 @@ for i in [10]:
     data_train = np.concatenate([xtrain,ytrain.reshape(-1,1)],axis=1)
     data_test = np.concatenate([xtest,ytest.reshape(-1,1)],axis=1)
     yhat_lwr = lw_reg(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
-    
     yhat_blwr_rf = boosted_lwr_rf(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
     yhat_blwr_dt = boosted_lwr_dt(xtrain,ytrain, xtest,Epanechnikov,tau=0.9,intercept=True)
-
     model_rf = RandomForestRegressor(n_estimators=100,max_depth=3)
     model_rf.fit(xtrain,ytrain)
     yhat_rf = model_rf.predict(xtest)
@@ -166,7 +164,6 @@ for i in [10]:
     mse_lwr.append(mse(ytest,yhat_lwr))
     mse_blwr_rf.append(mse(ytest,yhat_blwr_rf))
     mse_blwr_dt.append(mse(ytest,yhat_blwr_dt))
-
     mse_rf.append(mse(ytest,yhat_rf))
     mse_xgb.append(mse(ytest,yhat_xgb))
     mse_nn.append(mse(ytest,yhat_nn))
@@ -231,16 +228,3 @@ with warnings.catch_warnings():
 ### Conclusion
 
 The Neural Network had the best cross-validated Mean Squared Error at 3.17.
-
-
-``` Python
-
-```
-
-``` Python
-
-```
-
-``` Python
-
-```
