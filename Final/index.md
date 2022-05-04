@@ -180,11 +180,17 @@ print('XGB = ' + str(np.mean(mse_xgb)))
 print('NN = ' + str(np.mean(mse_nn)))
 ```
 The cross-validated Mean Squared Error for: 
+
 LWR = 4.037200980140024
+
 BLWR Random Forest = 3.997431350607031
+
 BLWR Decision Tree = 4.005014642729419
+
 RF = 4.4181823129054205
+
 XGB = 4.929575394796289
+
 NN = 3.1709550822808104
 
 ``` Python
