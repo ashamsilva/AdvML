@@ -7,11 +7,39 @@
 ## Methods Used 
 
 ### Locally Weighted Regression
+
+Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
+
+In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then utilized to find the weights for the regression. In the code section below, the execution of this can be found within the tricubic() function. In this process, weighting works by giving more meaning and greater weight the closer a point is to the x value. For example - a point with zero distance will be given a weight of one. 
+
+The equation for the predictions we make is:
+
+<img src="images/final.jpeg" width="400" height="60" alt="hi" class="inline"/>
+
+In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by using locally weighted regression we obtained the predicted y as a different linear combination of the values of y.
+
 ### Locally Weighted Regression Boosted by Random Forest 
 ### Locally Weighted Regression Boosted by Decision Tree
 ### XGBoost
 ### Random Forest 
+Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision trees predictions are then computed. 
+
+In order to calculate the decision tree value, the importance of each node on each decision tree is calculated. This is done through the use of Gini Importance. The following equation assumes that we are using a binary tree with only two child nodes.
+
+<img src="images/final-2.jpeg" width="600" height="60" alt="hi" class="inline"/>
+
+This equation shows the feature importance for the Random Forest:
+<img src="images/final-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 ### Neural Network
+
+
+
+### Locally Weighted Regression 
+
+
+
+### Random Forest 
+
 
 
 ## Coding Applications 
