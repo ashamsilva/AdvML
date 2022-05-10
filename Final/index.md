@@ -220,6 +220,8 @@ with warnings.catch_warnings():
   # model prediction 
   ypred=clf.predict(xtest)
   # MSE 
+  print('Mean Squared Error = ' + str(mean_squared_error(ypred,ytest)))
+
   print(mean_squared_error(ypred,ytest))
 ```
 4.695227149101829
