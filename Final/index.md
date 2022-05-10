@@ -2,7 +2,14 @@
 
 ## Economics Backgroud 
 
+
+
 ## Data 
+
+State', 'Homicide_Rate', 'Gini_Index', 'Unemployment_Rate (%)',
+       'Per_Capita_Income (USD)', 'Population (P)', 'Pop_Density (p/mi^2)',
+       'Edu_Spending (USD)', 'Poverty_Rate(%)', 'Urban_Population (%)'],
+      dtype='object'
 
 ## Methods Used 
 
