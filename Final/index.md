@@ -1,6 +1,6 @@
 # Advanced Applied Machine Learning Final Assignment
 
-## Economics Backgroud 
+## Economics Background 
 
 
 
