@@ -7,7 +7,7 @@
 ## Data 
 This [dataset](https://www.kaggle.com/datasets/wenhsuanliang/crime-economic-factors-datasets) was accessed and downloaded from Kaggle and consists of 50 observations. It contains information from the following 10 variables: State Name, Homicide Rate, Gini Index, Unemployment Rate (%), Income Per Capita (USD), Population, Population Density (Population/Mile^2), Spending on Education (USD), Poverty Rate (%), and Urban Population. This is an economic dataset containing information from 2018. What information is represented by each variable is clear in every variable except for the Gini Index. In machine learning, the Gini index indicates the probability that a new random data point will be misclassified if it were randomly assigned a class label according to the dataset distribution. In economics, the Gini Index is a measure of the income distribution across a given population. It is helpful in economic analysis because it acts as an indicator of economic inequality.
 
-## Methods Used 
+## Methodology 
 
 ### Locally Weighted Regression
 
