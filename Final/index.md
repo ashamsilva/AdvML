@@ -1,3 +1,20 @@
+# Advanced Applied Machine Learning Final Assignment
+
+## Economics Backgroud 
+
+## Data 
+
+## Methods Used 
+
+### Locally Weighted Regression
+### Locally Weighted Regression Boosted by Random Forest 
+### Locally Weighted Regression Boosted by Decision Tree
+### XGBoost
+### Random Forest 
+### Neural Network
+
+
+
 ### Import Libraries
 ``` Python
 # general imports
@@ -138,7 +155,6 @@ mse_blwr_dt = []
 mse_rf = []
 mse_xgb = []
 mse_nn = []
-mse_NW = []
 for i in [10]:
   kf = KFold(n_splits=10,shuffle=True,random_state=i)
   for idxtrain, idxtest in kf.split(x):
@@ -171,7 +187,6 @@ print('The cross-validated Mean Squared Error for: ')
 print('LWR = ' + str(np.mean(mse_lwr)))
 print('BLWR Random Forest = ' + str(np.mean(mse_blwr_rf)))
 print('BLWR Decision Tree = ' + str(np.mean(mse_blwr_dt)))
-
 print('RF = ' + str(np.mean(mse_rf)))
 print('XGB = ' + str(np.mean(mse_xgb)))
 print('NN = ' + str(np.mean(mse_nn)))
