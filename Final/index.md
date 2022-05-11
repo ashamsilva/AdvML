@@ -11,7 +11,7 @@ This [dataset](https://www.kaggle.com/datasets/wenhsuanliang/crime-economic-fact
 ## Methodology 
 
 ### Locally Weighted Regression
-Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
+Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to make more accurate predictions. It uses supervised learning to compute the relationships between non-linear inputs (x) and outputs (y). LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
 
 In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then utilized to find the weights for the regression. In the code section below, the execution of this can be found within the tricubic() function. In this process, weighting works by giving more meaning and greater weight the closer a point is to the x value. For example - a point with zero distance will be given a weight of one. 
 
@@ -20,9 +20,6 @@ The equation for the predictions we make is:
 <img src="images/final.jpeg" width="400" height="60" alt="hi" class="inline"/>
 
 In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by using locally weighted regression we obtained the predicted y as a different linear combination of the values of y.
-
-HERS
-Next, we will examine the performance of a locally weighted linear regression model. Linear regression is a supervised learning algorithm used for computing linear relationships between input (X) and output (Y). In the instance of a non-linear relationship between X and Y, locally weighted linear regression is used. Locally weighted linear regression is a non-parametric algorithm, that is, the model does not learn a fixed set of parameters as is done in ordinary linear regression. Rather parameters (tau) are computed individually for each query point x. While computing tau, a higher “preference” is given to the points in the training set lying in the vicinity of x than the points lying far away from x. Locally weighted linear regression includes numerous regression methods in a k-nearest neighbor meta-model. Furthermore, locally weighted linear regression is a memory-based approach to learning. It is called a "lazy learner" because it does not train until a query is posed to answer regarding prediction.
 
 ### Locally Weighted Regression Boosted (Boosted by both Decision Tree and Random Forest )
 The boosting process for locally weighted regressions allows for t
