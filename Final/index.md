@@ -37,6 +37,7 @@ In order to calculate the decision tree value, the importance of each node on ea
 <img src="images/final-2.jpeg" width="600" height="60" alt="hi" class="inline"/>
 
 This equation shows the feature importance for the Random Forest:
+
 <img src="images/final-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
 ### XGBoost
