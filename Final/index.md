@@ -38,19 +38,16 @@ is better than the old one, $F.$
 
 
 ### Random Forest 
-Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision trees predictions are then computed. 
+Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision tree predictions are then computed. Random forest is non-parametric and is especially useful because it can handle non-linear data. While random forests utilize decision trees, they are an ensemble learning algorithm and more effective because they reduce the chance of overfitting.
 
-In order to calculate the decision tree value, the importance of each node on each decision tree is calculated. This is done through the use of Gini Importance. The following equation assumes that we are using a binary tree with only two child nodes.
+In order to calculate the decision tree value, the importance of each node on each decision tree is calculated. This is done through the use of Gini Importance. The Gini index indicates the probability that a new random data point will be misclassified if it were randomly assigned a class label according to the dataset distribution. The following equation assumes that we are using a binary tree with only two child nodes.
 
 <img src="images/final-2.jpeg" width="600" height="60" alt="hi" class="inline"/>
 
 This equation shows the feature importance for the Random Forest:
 <img src="images/final-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
-HERS
-Next, we examined the performance of a random forest regressor. In order to understand how the random forest regressor works, we first introduce the concept of a decision tree. A decision tree is actually quite a simple tree-like structure which trains on some labeleled data to then make predictions about new data. This process occurs by forming a hierarchy of decisions to make in the training process. The process of separating the different levels of the tree happens recursively, separating into homogenous groups (nodes) down to terminal nodes (Gromping 2009). image
 
-The random forest regressor model is an ensemble model that incorporates many decision trees into its structure to make a final prediction on data. Unlike an ordinary linear regressor, random forests can fit to accomodate non-linearities in the dataset. As a result, similar to Lowess, random forests are non-parametric (Gromping 2009). Random forests are advantageous over decision trees because they are better at preventing overfitting due to the ensemble nature of the model (incorporating several predictions). The individual decision trees within the forest are, as the name suggests, quite random and yield differing predictions. The random forest algorithm takes the average of each individual decision tree to make final predictions (Gromping 2019). Additionally, random forests group weak learners together to form stronger learners (boosting), another theoretical strength of the model. Random forests are regarded by data scientists as one of the "best performing learning algorithms" (Schonlau 2020). First, we ran the model with some hardcoded hyperparameters to get a rough idea of model performance.
 
 
 ### XGBoost
