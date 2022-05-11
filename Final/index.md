@@ -25,17 +25,11 @@ HERS
 Next, we will examine the performance of a locally weighted linear regression model. Linear regression is a supervised learning algorithm used for computing linear relationships between input (X) and output (Y). In the instance of a non-linear relationship between X and Y, locally weighted linear regression is used. Locally weighted linear regression is a non-parametric algorithm, that is, the model does not learn a fixed set of parameters as is done in ordinary linear regression. Rather parameters (tau) are computed individually for each query point x. While computing tau, a higher “preference” is given to the points in the training set lying in the vicinity of x than the points lying far away from x. Locally weighted linear regression includes numerous regression methods in a k-nearest neighbor meta-model. Furthermore, locally weighted linear regression is a memory-based approach to learning. It is called a "lazy learner" because it does not train until a query is posed to answer regarding prediction.
 
 ### Locally Weighted Regression Boosted (Boosted by both Decision Tree and Random Forest )
-Assume you have an regressor $F$ and, for the observation $x_i$ we make the prediction $F(x_i)$. To improve the predictions, we can regard $F$ as a 'weak learner' and therefore train a decision tree (we can call it $h$) where the new output is $y_i-F(x_i)$. Thus, there are increased chances that the new regressor
-
-$$\large F + h$$ 
-
-is better than the old one, $F.$
-
+The boosting process for locally weighted regressions allows for t
+For a locally weighted regressor, F, and the observation x_i, we are able to predict F(x_i). For boosted regressions, F is always considered a weak learner so we train an additional model (h) so the new output becomes yi – F(x_i) and it is likely that the new regressor, F + H, is better than F. 
 
 ### Decision Tree
-
-
-
+Decision trees are the basis of Random Forest Regressors. It is based on a tree structure that utilizes training data to make predictions. Decision trees form a decision path that is followed. This is a recursive process in which the trees separate into homogenous nodes as they follow the decision path until it reaches the terminal node. The image below shows the generic structure of a decision tree.
 
 ### Random Forest 
 Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision tree predictions are then computed. Random forest is non-parametric and is especially useful because it can handle non-linear data. While random forests utilize decision trees, they are an ensemble learning algorithm and more effective because they reduce the chance of overfitting.
