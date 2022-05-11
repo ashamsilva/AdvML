@@ -53,7 +53,7 @@ The purpose of gradient boosting, and more specifically extreme gradient boostin
 
 Neural networks are a learning system that was modeled after the way human neurons function to understand inputs from our senses. Neural networks work to recognize patterns in the data to give us a useful output. A neural network has three main parts: the input layer, the hidden layer, and the output layer. The input layer takes the data as input nodes and communicates with the hidden layer. Each input is associated with a weight that will influence the importance of the neuron by multiplying the weight by the input. When the model first initiates, the weights are often random. Every neuron has an activation function which allows for non-linear modeling of the network. A training set of input values are run through the network so the prediction can be calculated. These predictions are then compared against the known output values and a loss is calculated. Backpropagation propagation is then used to propagate the loss function so that the model parameters can be optimized. The results of this propagation are then used to update the neural network through the use of gradient descent. This minimizes the loss and creates a better model. These steps are then repeated until a sufficient model is created. 
 
-<img src="images/final-4.jpeg" width="400" height="100" alt="hi" class="inline"/>
+<img src="images/final-4.jpeg" width="600" height="400" alt="hi" class="inline"/>
 
 [Source](https://torres.ai/)
 
