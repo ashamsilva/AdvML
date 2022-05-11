@@ -42,6 +42,8 @@ This equation shows the feature importance for the Random Forest:
 
 
 ### XGBoost
+The purpose of gradient boosting, and more specifically extreme gradient boosting is to strengthen weak learners. Extreme gradient boosting is an improved version of the original gradient boosting model because it includes regularization to prevent overfitting. It works by training multiple iterations of a model over time in a tree-based format. With each iteration of the previous model improved upon. It uses the mean from the dataset and adds the predicted residuals from a decision tree in the forest. XGBoost is known for its speed and ability to outperform other regressors. Below is a visualization to help understand XGBoost.![image](https://user-images.githubusercontent.com/71619715/167762166-85fe55f1-1a85-475d-87cf-5291c290266d.png)
+
 
 ### Neural Network
 
