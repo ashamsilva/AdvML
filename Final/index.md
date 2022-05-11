@@ -274,7 +274,7 @@ with warnings.catch_warnings():
   ypred=clf.predict(xtest)
   print('Mean Squared Error = ' + str(mean_squared_error(ypred,ytest)))
 ```
-4.695227149101829
+Mean Squared Error = 4.695227149101829
 
 
 ### Conclusion
