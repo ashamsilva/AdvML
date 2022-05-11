@@ -1,16 +1,16 @@
 # Advanced Applied Machine Learning Final Assignment
 
 ## Economics Background 
-
+Crime and its effect on economic activity and migration have been the center of many economic research investigations. The data analysis conducted in this project sets a foundation that can be expanded to train models that will be able to predict a state or area's crime rate based on a given set of economic factors. Given national data, the crime rate of specific areas cannot be determined because of the unique make-up of each area. However, using state-specific data, we can inform the model with area-specific data and more accurately predict crime rates. Through the use of Neural Networks, a high accuracy model was constructed. This model, with more data, could be applied with smaller granularity to county-level predictions. Accurately predicting crime rates can help inform public policy and individual decisions. If politicians and local leaders know what factors heavily influence crime, they can direct money into correcting those issues. Individuals and families are likely to choose their area of residence based on important factors such as crime which influences their safety. 
 
 
 ## Data 
 This [dataset](https://www.kaggle.com/datasets/wenhsuanliang/crime-economic-factors-datasets) was accessed and downloaded from Kaggle and consists of 50 observations. It contains information from the following 10 variables: State Name, Homicide Rate, Gini Index, Unemployment Rate (%), Income Per Capita (USD), Population, Population Density (Population/Mile^2), Spending on Education (USD), Poverty Rate (%), and Urban Population. This is an economic dataset containing information from 2018. What information is represented by each variable is clear in every variable except for the Gini Index. In machine learning, the Gini index indicates the probability that a new random data point will be misclassified if it were randomly assigned a class label according to the dataset distribution. In economics, the Gini Index is a measure of the income distribution across a given population. It is helpful in economic analysis because it acts as an indicator of economic inequality.
 
+
 ## Methodology 
 
 ### Locally Weighted Regression
-
 Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to make more accurate predictions. LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
 
 In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then utilized to find the weights for the regression. In the code section below, the execution of this can be found within the tricubic() function. In this process, weighting works by giving more meaning and greater weight the closer a point is to the x value. For example - a point with zero distance will be given a weight of one. 
@@ -23,6 +23,12 @@ In conclusion, the predictions we make are a linear combination of the actual ob
 
 ### Locally Weighted Regression Boosted by Random Forest 
 ### Locally Weighted Regression Boosted by Decision Tree
+Assume you have an regressor $F$ and, for the observation $x_i$ we make the prediction $F(x_i)$. To improve the predictions, we can regard $F$ as a 'weak learner' and therefore train a decision tree (we can call it $h$) where the new output is $y_i-F(x_i)$. Thus, there are increased chances that the new regressor
+
+$$\large F + h$$ 
+
+is better than the old one, $F.$
+
 ### XGBoost
 ### Random Forest 
 Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision trees predictions are then computed. 
