@@ -21,15 +21,22 @@ The equation for the predictions we make is:
 
 In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by using locally weighted regression we obtained the predicted y as a different linear combination of the values of y.
 
-### Locally Weighted Regression Boosted by Random Forest 
-### Locally Weighted Regression Boosted by Decision Tree
+HERS
+Next, we will examine the performance of a locally weighted linear regression model. Linear regression is a supervised learning algorithm used for computing linear relationships between input (X) and output (Y). In the instance of a non-linear relationship between X and Y, locally weighted linear regression is used. Locally weighted linear regression is a non-parametric algorithm, that is, the model does not learn a fixed set of parameters as is done in ordinary linear regression. Rather parameters (tau) are computed individually for each query point x. While computing tau, a higher “preference” is given to the points in the training set lying in the vicinity of x than the points lying far away from x. Locally weighted linear regression includes numerous regression methods in a k-nearest neighbor meta-model. Furthermore, locally weighted linear regression is a memory-based approach to learning. It is called a "lazy learner" because it does not train until a query is posed to answer regarding prediction.
+
+### Locally Weighted Regression Boosted (Boosted by both Decision Tree and Random Forest )
 Assume you have an regressor $F$ and, for the observation $x_i$ we make the prediction $F(x_i)$. To improve the predictions, we can regard $F$ as a 'weak learner' and therefore train a decision tree (we can call it $h$) where the new output is $y_i-F(x_i)$. Thus, there are increased chances that the new regressor
 
 $$\large F + h$$ 
 
 is better than the old one, $F.$
 
-### XGBoost
+
+### Decision Tree
+
+
+
+
 ### Random Forest 
 Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision trees predictions are then computed. 
 
@@ -39,15 +46,19 @@ In order to calculate the decision tree value, the importance of each node on ea
 
 This equation shows the feature importance for the Random Forest:
 <img src="images/final-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
+
+HERS
+Next, we examined the performance of a random forest regressor. In order to understand how the random forest regressor works, we first introduce the concept of a decision tree. A decision tree is actually quite a simple tree-like structure which trains on some labeleled data to then make predictions about new data. This process occurs by forming a hierarchy of decisions to make in the training process. The process of separating the different levels of the tree happens recursively, separating into homogenous groups (nodes) down to terminal nodes (Gromping 2009). image
+
+The random forest regressor model is an ensemble model that incorporates many decision trees into its structure to make a final prediction on data. Unlike an ordinary linear regressor, random forests can fit to accomodate non-linearities in the dataset. As a result, similar to Lowess, random forests are non-parametric (Gromping 2009). Random forests are advantageous over decision trees because they are better at preventing overfitting due to the ensemble nature of the model (incorporating several predictions). The individual decision trees within the forest are, as the name suggests, quite random and yield differing predictions. The random forest algorithm takes the average of each individual decision tree to make final predictions (Gromping 2019). Additionally, random forests group weak learners together to form stronger learners (boosting), another theoretical strength of the model. Random forests are regarded by data scientists as one of the "best performing learning algorithms" (Schonlau 2020). First, we ran the model with some hardcoded hyperparameters to get a rough idea of model performance.
+
+
+### XGBoost
+
 ### Neural Network
 
 
 
-### Locally Weighted Regression 
-
-
-
-### Random Forest 
 
 
 
