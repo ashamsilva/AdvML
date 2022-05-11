@@ -40,12 +40,11 @@ In order to calculate the decision tree value, the importance of each node on ea
 This equation shows the feature importance for the Random Forest:
 <img src="images/final-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
-
-
-
 ### XGBoost
 The purpose of gradient boosting, and more specifically extreme gradient boosting is to strengthen weak learners. Extreme gradient boosting is an improved version of the original gradient boosting model because it includes regularization to prevent overfitting. It works by training multiple iterations of a model over time in a tree-based format. With each iteration of the previous model improved upon. It uses the mean from the dataset and adds the predicted residuals from a decision tree in the forest. XGBoost is known for its speed and ability to outperform other regressors. Below is a visualization to help understand XGBoost.
-<img src="images/final-6.jpeg" width="800" height="400" alt="hi" class="inline"/>
+
+
+<img src="images/final-6.jpeg" width="800" height="600" alt="hi" class="inline"/>
 [Source](https://docs.aws.amazon.com/sagemaker/latest/dg/xgboost-HowItWorks.html)
 
 
