@@ -1,17 +1,17 @@
 # Advanced Applied Machine Learning Final Assignment
 
 ## Economics Background 
-Crime and its effect on economic activity and migration have been the center of many economic research investigations. The data analysis conducted in this project sets a foundation that can be expanded to train models that will be able to predict a state or area's crime rate based on a given set of economic factors. Given national data, the crime rate of specific areas cannot be determined because of the unique make-up of each area. However, using state-specific data, we can inform the model with area-specific data and more accurately predict crime rates. Through the use of Neural Networks, a high accuracy model was constructed. This model, with more data, could be applied with smaller granularity to county-level predictions. Accurately predicting crime rates can help inform public policy and individual decisions. If politicians and local leaders know what factors heavily influence crime, they can direct money into correcting those issues. Individuals and families are likely to choose their area of residence based on important factors such as crime which influences their safety. 
+Crime, and its effect on economic activity and migration, has been the center of many economic research investigations. The data analysis conducted in this project sets a foundation that can be expanded to train models. These models will be able to predict a state or area's crime rate based on a given set of economic factors. Given national data, the crime rate of specific areas cannot be determined because of the unique economic make-up of each area. However, by using state-specific data, we can inform the model with area-specific data and more accurately predict the crime rates in the area in question. Multiple models were run and the Neural Network model was found to have the highest accuracy. This model, with more data, could be applied with smaller granularity to county-level predictions. Accurately predicting crime rates can help inform public policy and individual decisions. If politicians and local leaders know what factors heavily influence crime, they can direct money into correcting those issues. Additionally, individuals and families are likely to choose their area of residence based on important factors such as crime which influences their safety. 
 
 
 ## Data 
-This [dataset](https://www.kaggle.com/datasets/wenhsuanliang/crime-economic-factors-datasets) was accessed and downloaded from Kaggle and consists of 50 observations. It contains information from the following 10 variables: State Name, Homicide Rate, Gini Index, Unemployment Rate (%), Income Per Capita (USD), Population, Population Density (Population/Mile^2), Spending on Education (USD), Poverty Rate (%), and Urban Population. This is an economic dataset containing information from 2018. What information is represented by each variable is clear in every variable except for the Gini Index. In machine learning, the Gini index indicates the probability that a new random data point will be misclassified if it were randomly assigned a class label according to the dataset distribution. In economics, the Gini Index is a measure of the income distribution across a given population. It is helpful in economic analysis because it acts as an indicator of economic inequality.
+This [dataset](https://www.kaggle.com/datasets/wenhsuanliang/crime-economic-factors-datasets) was accessed and downloaded from Kaggle and consists of 50 observations from 2018. It contains information from the following 10 variables: State Name, Homicide Rate, Gini Index, Unemployment Rate (%), Income Per Capita (USD), Population, Population Density (Population/Mile^2), Spending on Education (USD), Poverty Rate (%), and Urban Population. What information is represented by each variable is clear in every variable except for the Gini Index. In machine learning, the Gini index indicates the probability that a new random data point will be misclassified if it were randomly assigned a class label according to the dataset distribution. In economics, the Gini Index is a measure of the income distribution across a given population. It is helpful in economic analysis because it acts as an indicator of economic inequality.
 
 
 ## Methodology 
 
 ### Locally Weighted Regression
-Locally Weighted Regression is a specialized type of regression which utilizes weighted linear regression to make more accurate predictions. It uses supervised learning to compute the relationships between non-linear inputs (x) and outputs (y). LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculate an estimate.
+Locally Weighted Regression is a specialized type of regression that utilizes weighted linear regression to make more accurate predictions. It uses supervised learning to compute the relationships between non-linear inputs (x) and outputs (y). LO(W)ESS or LOESS is non-parametric. LOESS calculates a predicted regression line by isolating neighboring points within a specified range and calculating an estimate.
 
 In order to find the k nearest neighbors from x, Euclidean distance is used. The distance calculated is then utilized to find the weights for the regression. In the code section below, the execution of this can be found within the tricubic() function. In this process, weighting works by giving more meaning and greater weight the closer a point is to the x value. For example - a point with zero distance will be given a weight of one. 
 
@@ -19,11 +19,10 @@ The equation for the predictions we make is:
 
 <img src="images/final.jpeg" width="400" height="60" alt="hi" class="inline"/>
 
-In conclusion, the predictions we make are a linear combination of the actual observed values of the dependent variable and by using locally weighted regression we obtained the predicted y as a different linear combination of the values of y.
+The predictions we make are a linear combination of the actual observed values of the dependent variable and by using locally weighted regression we obtained the predicted y as a different linear combination of the values of y.
 
 ### Locally Weighted Regression Boosted (Boosted by both Decision Tree and Random Forest )
-The boosting process for locally weighted regressions allows for t
-For a locally weighted regressor, F, and the observation x_i, we are able to predict F(x_i). For boosted regressions, F is always considered a weak learner so we train an additional model (h) so the new output becomes yi – F(x_i) and it is likely that the new regressor, F + H, is better than F. 
+The boosting process for locally weighted regressions allows for a more accurate model to be constructed. For a locally weighted regressor, F, and the observation x_i, we are able to predict F(x_i). For boosted regressions, F is always considered a weak learner so we train an additional model (h) so the new output becomes yi – F(x_i) and it is likely that the new regressor, F + H, is better than F. 
 
 ### Decision Tree
 Decision trees are the basis of Random Forest Regressors. It is based on a tree structure that utilizes training data to make predictions. Decision trees form a decision path that is followed. This is a recursive process in which the trees separate into homogenous nodes as they follow the decision path until it reaches the terminal node. The image below shows the generic structure of a decision tree.
@@ -31,7 +30,7 @@ Decision trees are the basis of Random Forest Regressors. It is based on a tree 
 [Source](https://scikit-learn.org/stable/auto_examples/tree/plot_unveil_tree_structure.html)
 
 ### Random Forest 
-Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision tree predictions are then computed. Random forest is non-parametric and is especially useful because it can handle non-linear data. While random forests utilize decision trees, they are an ensemble learning algorithm and more effective because they reduce the chance of overfitting.
+Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision tree predictions is then computed. Random forest is non-parametric and is especially useful because it can handle non-linear data. While random forests utilize decision trees, it is an ensemble learning algorithm and more effective because it reduces the chance of overfitting.
 
 In order to calculate the decision tree value, the importance of each node on each decision tree is calculated. This is done through the use of Gini Importance. The Gini index indicates the probability that a new random data point will be misclassified if it were randomly assigned a class label according to the dataset distribution. The following equation assumes that we are using a binary tree with only two child nodes.
 
@@ -41,7 +40,7 @@ This equation shows the feature importance for the Random Forest:
 <img src="images/final-3.jpeg" width="400" height="100" alt="hi" class="inline"/>
 
 ### XGBoost
-The purpose of gradient boosting, and more specifically extreme gradient boosting is to strengthen weak learners. Extreme gradient boosting is an improved version of the original gradient boosting model because it includes regularization to prevent overfitting. It works by training multiple iterations of a model over time in a tree-based format. With each iteration of the previous model improved upon. It uses the mean from the dataset and adds the predicted residuals from a decision tree in the forest. XGBoost is known for its speed and ability to outperform other regressors. Below is a visualization to help understand XGBoost.
+The purpose of gradient boosting, and more specifically extreme gradient boosting is to strengthen weak learners. Extreme gradient boosting is an improved version of the original gradient boosting model because it includes regularization to prevent overfitting. It works by training multiple iterations of a model over time in a tree-based format. Each iteration of the previous model is improved upon. It uses the mean from the dataset and adds the predicted residuals from a decision tree in the forest. XGBoost is known for its speed and ability to outperform other regressors. Below is a visualization to help understand XGBoost.
 
 
 <img src="images/final-6.jpeg" width="800" height="600" alt="hi" class="inline"/>
@@ -51,7 +50,7 @@ The purpose of gradient boosting, and more specifically extreme gradient boostin
 
 ### Neural Network
 
-Neural networks are a learning system that was modeled after the way human neurons function to understand inputs from our senses. Neural networks work to recognize patterns in the data to give us a useful output. A neural network has three main parts: the input layer, the hidden layer, and the output layer. The input layer takes the data as input nodes and communicates with the hidden layer. Each input is associated with a weight that will influence the importance of the neuron by multiplying the weight by the input. When the model first initiates, the weights are often random. Every neuron has an activation function which allows for non-linear modeling of the network. A training set of input values are run through the network so the prediction can be calculated. These predictions are then compared against the known output values and a loss is calculated. Backpropagation propagation is then used to propagate the loss function so that the model parameters can be optimized. The results of this propagation are then used to update the neural network through the use of gradient descent. This minimizes the loss and creates a better model. These steps are then repeated until a sufficient model is created. 
+Neural networks is a learning system that was modeled after the way human neurons function to understand inputs from our senses. Neural networks work to recognize patterns in the data to give us a useful output. A neural network has three main parts: the input layer, the hidden layer, and the output layer. The input layer takes the data as input nodes and communicates with the hidden layer. Each input is associated with a weight that will influence the importance of the neuron by multiplying the weight by the input. When the model first initiates, the weights are often randomized. Every neuron has an activation function which allows for non-linear modeling of the network. A training set of input values are run through the network so the prediction can be calculated. These predictions are then compared against the known output values and the loss is calculated. Backpropagation propagation is then used to propagate the loss function so that the model parameters can be optimized. The results of this propagation are then used to update the neural network through the use of gradient descent. This minimizes the loss and creates a better model. These steps are then repeated until a sufficient model is created. 
 
 <img src="images/final-4.jpeg" width="600" height="400" alt="hi" class="inline"/>
 
@@ -60,7 +59,7 @@ Neural networks are a learning system that was modeled after the way human neuro
 
 
 
-## Coding Applications 
+## Coding Application
 
 ### Import Libraries
 ``` Python
@@ -116,13 +115,12 @@ def Epanechnikov(x):
   return np.where(d>1,0,3/4*(1-d**2)) 
 
 #Defining the kernel local regression model
-
 def lw_reg(X, y, xnew, kern, tau, intercept):
     # tau is called bandwidth K((x-x[i])/(2*tau))
-    n = len(X) # the number of observations
+    n = len(X) # number of observations
     yest = np.zeros(n)
 
-    if len(y.shape)==1: # here we make column vectors
+    if len(y.shape)==1: 
       y = y.reshape(-1,1)
 
     if len(X.shape)==1:
@@ -133,38 +131,32 @@ def lw_reg(X, y, xnew, kern, tau, intercept):
     else:
       X1 = X
 
-    w = np.array([kern((X - X[i])/(2*tau)) for i in range(n)]) # here we compute n vectors of weights
+    w = np.array([kern((X - X[i])/(2*tau)) for i in range(n)]) # compute n vectors of weights
 
     #Looping through all X-points
     for i in range(n):          
         W = np.diag(w[:,i])
         b = np.transpose(X1).dot(W).dot(y)
         A = np.transpose(X1).dot(W).dot(X1)
-        #A = A + 0.001*np.eye(X1.shape[1]) # if we want L2 regularization
-        #theta = linalg.solve(A, b) # A*theta = b
         beta, res, rnk, s = lstsq(A, b)
         yest[i] = np.dot(X1[i],beta)
     if X.shape[1]==1:
       f = interp1d(X.flatten(),yest,fill_value='extrapolate')
     else:
       f = LinearNDInterpolator(X, yest)
-    output = f(xnew) # the output may have NaN's where the data points from xnew are outside the convex hull of X
+    output = f(xnew)
     if sum(np.isnan(output))>0:
       g = NearestNDInterpolator(X,y.ravel()) 
-      # output[np.isnan(output)] = g(X[np.isnan(output)])
       output[np.isnan(output)] = g(xnew[np.isnan(output)])
     return output
     
 
 def boosted_lwr_rf(X, y, xnew, kern, tau, intercept):
-  # we need decision trees
   # for training the boosted method we use X and y
   Fx = lw_reg(X,y,X,kern,tau,intercept) # we need this for training the Decision Tree
-  # Now train the Decision Tree on y_i - F(x_i)
+  # Now train the Random Forest on y_i - F(x_i)
   new_y = y - Fx
-  #model = DecisionTreeRegressor(max_depth=2, random_state=123)
   model = RandomForestRegressor(n_estimators=100,max_depth=2)
-  #model = model_xgb
   model.fit(X,new_y)
   output = model.predict(xnew) + lw_reg(X,y,xnew,kern,tau,intercept)
   return output 
@@ -184,7 +176,7 @@ def boosted_lwr_dt(X, y, xnew, kern, tau, intercept):
 kf = KFold(n_splits = 10, shuffle = True, random_state = 1234)
 scale = StandardScaler()
 
-# establish Nerual Networks 
+# establish Nerual Network
 model_nn = Sequential()
 model_nn.add(Dense(128, activation="relu", input_dim=8))
 model_nn.add(Dense(128, activation="relu"))
@@ -271,24 +263,19 @@ with warnings.catch_warnings():
   warnings.simplefilter("ignore")
   # Convert into LGB Dataset Format
   train=lgb.Dataset(xtrain, label=ytrain)
-  # Set the parameters 
   params={'learning_rate': 0.03, 
-          'boosting_type':'gbdt', #GradientBoostingDecisionTree
-          'objective':'regression',#regression task
+          'boosting_type':'gbdt', #Gradient Boosting Decision Tree
+          'objective':'regression',
           'n_estimators':100,
           'max_depth':10}
-  # Create and train the model
   clf=lgb.train(params, train,100)
-  # model prediction 
+  # prediction 
   ypred=clf.predict(xtest)
-  # MSE 
   print('Mean Squared Error = ' + str(mean_squared_error(ypred,ytest)))
-
-  print(mean_squared_error(ypred,ytest))
 ```
 4.695227149101829
 
 
 ### Conclusion
 
-The Neural Network had the best cross-validated Mean Squared Error at 3.17.
+The Neural Network had the best cross-validated Mean Squared Error at 3.17. In the future, these models can be verified with a larger dataset. If accurate with more observations, this analysis will be helpful to individuals and can help inform government policy. 
