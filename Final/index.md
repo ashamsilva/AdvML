@@ -28,6 +28,9 @@ For a locally weighted regressor, F, and the observation x_i, we are able to pre
 ### Decision Tree
 Decision trees are the basis of Random Forest Regressors. It is based on a tree structure that utilizes training data to make predictions. Decision trees form a decision path that is followed. This is a recursive process in which the trees separate into homogenous nodes as they follow the decision path until it reaches the terminal node. The image below shows the generic structure of a decision tree.
 
+<img src="images/final-5.jpeg" width="600" height="60" alt="hi" class="inline"/>
+[Source](https://scikit-learn.org/stable/auto_examples/tree/plot_unveil_tree_structure.html)
+
 ### Random Forest 
 Random Forest Regression is an ensemble learning algorithm that utilizes decision trees. Random Forest works by fitting random subsets of the data onto decision trees. The average of the decision tree predictions are then computed. Random forest is non-parametric and is especially useful because it can handle non-linear data. While random forests utilize decision trees, they are an ensemble learning algorithm and more effective because they reduce the chance of overfitting.
 
