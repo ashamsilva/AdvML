@@ -61,3 +61,51 @@ test_score = rf_model.score(X_test, y_test)*100
 print(f'Random Forest Train Model Score = {training_score:.3}%')
 print(f'Random Forest Test Model Score = {test_score:.3}%')
 ```
+
+Linear Regression Train Model Score = 10.7%
+Linear Regression Test Model Score = 10.6% 
+
+Random Forest Train Model Score = 29.2%
+Random Forest Test Model Score = 28.0%
+
+
+```Python
+housing = X_test 
+migration = y_pred_lr
+# initiate the figure
+plt.figure(figsize=(6,5))
+plt.scatter(X_test, y_test, color = 'grey', alpha = 0.2)
+plt.scatter(housing, migration, color = 'teal', alpha = 0.3)
+# clean up the visual
+plt.axhline(0, color = 'black', linestyle = 'dotted')   
+plt.gca().spines['top'].set_visible(False)  
+plt.gca().spines['right'].set_visible(False)
+plt.tick_params(axis='both', labelsize=12, length = 0)    
+plt.xlabel("Home Value (USD)\n", fontsize = 16)   
+plt.ylabel("\nMigration Rate (%)", fontsize = 16)    
+plt.title('Relationship Between Home Values and Migration Rate\n', fontsize = 20)    
+plt.show()
+# plt.savefig('./images/scatterplot.png')
+
+
+housing = X_test 
+migration = y_pred_rf
+# initiate the figure
+plt.figure(figsize=(6,5))
+plt.scatter(X_test, y_test, color = 'grey', alpha = 0.2)
+plt.scatter(housing, migration, color = 'teal', alpha = 0.3)
+# clean up the visual
+plt.axhline(0, color = 'black', linestyle = 'dotted')   
+plt.gca().spines['top'].set_visible(False)  
+plt.gca().spines['right'].set_visible(False)
+plt.tick_params(axis='both', labelsize=12, length = 0)    
+plt.xlabel("Home Value (USD) \n", fontsize = 16)   
+plt.ylabel("\nMigration Rate (%)", fontsize = 16)    
+plt.title('Relationship Between Home Values and Migration Rate\n', fontsize = 20)   
+plt.show()
+# plt.savefig('./images/scatterplot.png')
+```
+<img src="images/Unknown-2.png" width="400" height="600" alt="hi" class="inline"/>
+<img src="images/Unknown-3.png" width="400" height="600" alt="hi" class="inline"/>
+
+
