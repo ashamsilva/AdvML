@@ -63,9 +63,11 @@ print(f'Random Forest Test Model Score = {test_score:.3}%')
 ```
 
 Linear Regression Train Model Score = 10.7%
+
 Linear Regression Test Model Score = 10.6% 
 
 Random Forest Train Model Score = 29.2%
+
 Random Forest Test Model Score = 28.0%
 
 
