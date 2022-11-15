@@ -105,7 +105,7 @@ plt.title('Relationship Between Home Values and Migration Rate\n', fontsize = 20
 plt.show()
 # plt.savefig('./images/scatterplot.png')
 ```
-<img src="images/Unknown-2.png" width="400" height="250" alt="hi" class="inline"/>
-<img src="images/Unknown-3.png" width="400" height="600" alt="hi" class="inline"/>
+<img src="images/Unknown-2.png" width="500" height="325" alt="hi" class="inline"/>
+<img src="images/Unknown-3.png" width="500" height="325" alt="hi" class="inline"/>
 
 
